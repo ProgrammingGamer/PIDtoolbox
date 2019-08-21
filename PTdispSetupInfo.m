@@ -15,7 +15,7 @@ if ~isempty(filenameA) || ~isempty(filenameB)
     PTdisp.Name= ['PIDtoolbox (' PtbVersion ') -  Setup Info'];
     set(PTdisp,'color',bgcolor)
 
-    prop_max_screen=(max([PTdisp.Position(3) PTdisp.Position(4)]));
+    prop_max_screen=(max([get(PTdisp, 'position')(3) get(PTdisp, 'position')(4)]));
     fontsz5=14;
     columnWidth=800*prop_max_screen;
 

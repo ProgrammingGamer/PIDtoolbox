@@ -55,9 +55,9 @@ guiHandles.checkbox13=uicontrol(PTfig,'Style','checkbox','String','Motor 4','fon
 guiHandles.checkbox14=uicontrol(PTfig,'Style','checkbox','String','Throttle','fontsize',fontsz,'ForegroundColor',[linec.col14],'BackgroundColor',bgcolor,...
     'units','normalized','outerposition',[posInfo.checkbox14],'callback','if (~isempty(filenameA) | ~isempty(filenameB)), PTplotLogViewer; end');
 
-guiHandles.checkbox0.Value=1;
-guiHandles.checkbox1.Value=1;
-guiHandles.checkbox14.Value=1;
+set(guiHandles.checkbox0, 'value', 1);
+set(guiHandles.checkbox1, 'value', 1);
+set(guiHandles.checkbox14, 'value', 1);
 
 guiHandles.checkbox15=uicontrol(PTfig,'Style','checkbox','String','All','fontsize',fontsz,'ForegroundColor',[linec.col15],'BackgroundColor',bgcolor,...
     'units','normalized','outerposition',[posInfo.checkbox15],'callback','if (~isempty(filenameA) | ~isempty(filenameB)), plotall_flag=guiHandles.checkbox15.Value; PTplotLogViewer; end');

@@ -21,7 +21,7 @@ us2sec=1000000;
 maxMotorOutput=2000; 
 
 set(PTfig, 'pointer', 'watch')
-guiHandles.runAll.FontWeight='Bold';
+set(guiHandles.runAll, "fontweight", 'Bold');
 
 pause(.2)
 

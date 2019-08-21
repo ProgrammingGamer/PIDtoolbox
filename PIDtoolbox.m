@@ -22,7 +22,7 @@ end
 
 %%%% assign main figure handle and define some UI variables 
 PTfig = figure(1);
-PTfig.InvertHardcopy='off';
+set(PTfig, 'inverthardcopy', 'off');
 bgcolor=[.95 .95 .95];
 set(PTfig,'color',bgcolor);
 
@@ -65,14 +65,20 @@ flightSpec=0;
 screensz = get(0,'ScreenSize');
 
 %set(PTfig, 'Position', [10, 10, screensz(3)*.5, screensz(4)*.5]);
-set(PTfig, 'units','normalized','outerposition',[.1 .1 .75 .8])
-PTfig.NumberTitle='off';
-PTfig.Name= ['PIDtoolbox (' PtbVersion ') - Log Viewer'];
+set(PTfig, 'units','normalized','position',[.1 .1 .75 .8])
+set(PTfig, 'numbertitle', 'off');
+%PTfig.NumberTitle='off';
+set(PTfig, 'name', ['PIDtoolbox (' PtbVersion ') - Log Viewer']);
+%PTfig.Name= ['PIDtoolbox (' PtbVersion ') - Log Viewer'];
 
 pause(.2)% need to wait for figure to open before extracting screen values
 
 screensz_multiplier = sqrt(screensz(3)^2+screensz(4)^2) * .0064;
-prop_max_screen=(max([PTfig.Position(3) PTfig.Position(4)]));
+positionArray=get(PTfig, 'position');
+prop_max_screen=(max([
+    positionArray(3)%PTfig.Position(3) 
+    positionArray(4)%PTfig.Position(4)
+    ]));
 fontsz=(screensz_multiplier*prop_max_screen);
 
 controlpanel = uipanel('Title','Control Panel','FontSize',fontsz,...
@@ -137,20 +143,20 @@ for i=1:length(j)
 end
 
 %%% tooltips
-TooltipString_files=['Select the .BBL or .BFL file you wish to analyze. ' , newline,...
-    'Warning: blackbox_decode must be in the same folder as the selected log file!' , newline,...
-    'It usually does not matter where the PIDtoolbox program file is located.' newline,...
-    'If problem persists, it usually means the log file is missing header info,' newline,... 
+TooltipString_files=['Select the .BBL or .BFL file you wish to analyze. \n',...
+    'Warning: blackbox_decode must be in the same folder as the selected log file!\n',...
+    'It usually does not matter where the PIDtoolbox program file is located.\n',...
+    'If problem persists, it usually means the log file is missing header info,\n',... 
     'because of a corrupted file and/or SD card issue.'];
 
 TooltipString_loadRun=['Load and run selected files. '];
 TooltipString_feelingLucky=['Load and run selected files, then plot and save the important stuff! '];
-TooltipString_Epochs=['Input the desired start and end points (in seconds) of the log file' , newline, 'Note: the selected time window denotes the data used for all other analyses.' , newline, 'The shaded regions indicate ignored data.'];
+TooltipString_Epochs=['Input the desired start and end points (in seconds) of the log file\n', 'Note: the selected time window denotes the data used for all other analyses.\n', 'The shaded regions indicate ignored data.'];
 TooltipString_spec=['Opens spectral analysis tool in new window'];
 TooltipString_err=['Opens PID error tool in new window'];
 TooltipString_step=['Opens step response tool in new window'];
 TooltipString_setup=['Displays detailed setup information in new window'];
-TooltipString_saveFig=['Saves current figure', newline,'Note: Clicking the ''Save fig'' button for the first time creates a folder using the log file names'];
+TooltipString_saveFig=['Saves current figure\n','Note: Clicking the ''Save fig'' button for the first time creates a folder using the log file names'];
 TooltipString_flightStats=['Plots flight statistics in new window' ];
 TooltipString_wiki=['Link to the PIDtoolbox wiki in Github'];
 TooltipString_refresh=['Refreshes fonts and button sizes after change in window size'];
