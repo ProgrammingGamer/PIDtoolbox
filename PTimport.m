@@ -44,7 +44,7 @@ if strcmp(filename(end-3:end),'.BFL') || strcmp(filename(end-3:end),'.BBL') || s
     % only choose files that don't have .bbl or .bfl extension
     clear f2;m=1;
     for k=1:length(files)
-        if ~contains(files(k).name,'.bbl','IgnoreCase',true) & ~contains(files(k).name,'.bfl','IgnoreCase',true)  
+        if ~strcmpi(files(k).name,'.bbl') & ~strcmpi(files(k).name,'.bfl')
             f2(m)=files(k);
             m=m+1;
         end
@@ -151,7 +151,7 @@ if validData
              for m=1:length(hdr)
                  hdr{m}(a{m})=[]; % get rid of quotes
                  a2=strfind(hdr{m},',');
-                  a3=char(string(hdr{m}));
+                  a3=char(sprintf("%s", hdr{m}));
                   SetupInfo(m,:)=[{a3(1:a2-1)} {a3(a2+1:end)}];
              end
                         

@@ -66,12 +66,12 @@ if ~isempty(filenameA)
             tta=tta-tta(1);
             
             %%%%%% Lograte and Looptime
-            A_gyro_sync_denom=str2num(char(string(dataA.SetupInfo(strcmp(dataA.SetupInfo(:,1),'gyro_sync_denom'),2))));
-            A_pid_process_denom=str2num(char(string(dataA.SetupInfo(strcmp(dataA.SetupInfo(:,1),'pid_process_denom'),2))));
-            A_looptime=str2num(char(string(dataA.SetupInfo(strcmp(dataA.SetupInfo(:,1),'looptime'),2))));
+            A_gyro_sync_denom=str2num(char(dataA.SetupInfo(strcmp(dataA.SetupInfo(:,1),'gyro_sync_denom'),2)));
+            A_pid_process_denom=str2num(char(dataA.SetupInfo(strcmp(dataA.SetupInfo(:,1),'pid_process_denom'),2)));
+            A_looptime=str2num(char(dataA.SetupInfo(strcmp(dataA.SetupInfo(:,1),'looptime'),2)));
             A_lograte=round(1000/median(diff(tta)));
-            if ~isempty(str2num(char(string(dataA.SetupInfo(strcmp(dataA.SetupInfo(:,1),'debug_mode'),2)))))
-                A_debugmode=str2num(char(string(dataA.SetupInfo(strcmp(dataA.SetupInfo(:,1),'debug_mode'),2))));
+            if ~isempty(str2num(char(dataA.SetupInfo(strcmp(dataA.SetupInfo(:,1),'debug_mode'),2))))
+                A_debugmode=str2num(char(dataA.SetupInfo(strcmp(dataA.SetupInfo(:,1),'debug_mode'),2)));
             end
             if A_lograte > 4    
                 waitfor(msgbox(['File A lograte = ' num2str(A_lograte) 'kHz. For faster processing, please consider logging @ 2kHz!']));
@@ -114,12 +114,12 @@ if ~isempty(filenameB)
             ttb=ttb-ttb(1);
             
             %%%%%% Lograte and Looptime
-            B_gyro_sync_denom=str2num(char(string(dataB.SetupInfo(strcmp(dataB.SetupInfo(:,1),'gyro_sync_denom'),2))));
-            B_pid_process_denom=str2num(char(string(dataB.SetupInfo(strcmp(dataB.SetupInfo(:,1),'pid_process_denom'),2))));
-            B_looptime=str2num(char(string(dataB.SetupInfo(strcmp(dataB.SetupInfo(:,1),'looptime'),2))));
+            B_gyro_sync_denom=str2num(char(dataB.SetupInfo(strcmp(dataB.SetupInfo(:,1),'gyro_sync_denom'),2)));
+            B_pid_process_denom=str2num(char(dataB.SetupInfo(strcmp(dataB.SetupInfo(:,1),'pid_process_denom'),2)));
+            B_looptime=str2num(char(dataB.SetupInfo(strcmp(dataB.SetupInfo(:,1),'looptime'),2)));
             B_lograte=round(1000/median(diff(ttb)));
-            if ~isempty(str2num(char(string(dataB.SetupInfo(strcmp(dataB.SetupInfo(:,1),'debug_mode'),2)))))
-                B_debugmode=str2num(char(string(dataB.SetupInfo(strcmp(dataB.SetupInfo(:,1),'debug_mode'),2))));
+            if ~isempty(str2num(char(dataB.SetupInfo(strcmp(dataB.SetupInfo(:,1),'debug_mode'),2))))
+                B_debugmode=str2num(char(dataB.SetupInfo(strcmp(dataB.SetupInfo(:,1),'debug_mode'),2)));
             end
             if B_lograte > 4
                 waitfor(msgbox(['File B lograte = ' num2str(B_lograte) 'kHz. For faster processing, please consider logging @ 2kHz!']));

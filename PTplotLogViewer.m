@@ -121,8 +121,8 @@ if ~isempty(filenameA) || ~isempty(filenameB)
     axLabel={'roll';'pitch';'yaw'};
 
     PTfig;
-    dcm_obj = datacursormode(PTfig);
-    set(dcm_obj,'UpdateFcn',@PTdatatip);
+    %dcm_obj = datacursormode(PTfig);
+    %set(dcm_obj,'UpdateFcn',@PTdatatip);
 
      %%%% [A] LINE PLOTS
     if ~isempty(filenameA)
@@ -191,17 +191,23 @@ if ~isempty(filenameA) || ~isempty(filenameB)
                 h=fill([t2,xmax,xmax,t2],[-maxY*2,-maxY*2,maxY,maxY],[.8 .8 .8]);
                 set(h,'FaceAlpha',0.8,'EdgeColor',[.8 .8 .8]);
 
-                a = zoom(PTfig);
-                if strcmp(a.Enable,'on'), 
-                    v = axis;
-                    axis(v)
-                else  
-                    a.Enable='off'; 
-                    axis([0 xmax -maxY*2 maxY])
-                end
+                printf("ErrorCheck 01\n");
+                
+                %a = zoom(PTfig);
+                
+                printf("ErrorCheck 02\n");
+                
+                
+                %if strcmp(a.Enable,'on'), 
+                %    v = axis;
+                %    axis(v)
+                %else  
+                %    a.Enable='off'; 
+                %    axis([0 xmax -maxY*2 maxY])
+                %end
 
                 box off            
-                y=ylabel(['[A] ' axLabel{ii} '^o/s'],'fontweight','bold','rot', 90);               
+                y=ylabel(['[A] ' axLabel{ii} '^o/s'],'fontweight','bold','rotation', 90);               
                 set(y,'Units','normalized', 'position', [-.035 .67 1],'color',[.2 .2 .2]); 
                 y=xlabel('time (s)','fontweight','bold');
                 set(y,'color',[.2 .2 .2]); 
@@ -295,18 +301,21 @@ if ~isempty(filenameA) || ~isempty(filenameB)
                 h=fill([t4,xmax,xmax,t4],[-maxY*2,-maxY*2,maxY,maxY],[.8 .8 .8]);
                 set(h,'FaceAlpha',0.8,'EdgeColor',[.8 .8 .8]);
 
-                a = zoom(PTfig);
-                if strcmp(a.Enable,'on'), 
-                    v = axis;
-                    axis(v)
-                else  
-                    a.Enable='off'; 
-                    axis([0 xmax -maxY*2 maxY])
-                end
                 printf("ErrorCheck 03\n");
+                
+                %a = zoom(PTfig);
+                %if strcmp(a.Enable,'on'), 
+                %    v = axis;
+                %    axis(v)
+                %else  
+                %    a.Enable='off'; 
+                %    axis([0 xmax -maxY*2 maxY])
+                %end
+                
+                printf("ErrorCheck 04\n");
                
                 box off   
-                y=ylabel(['[B] ' axLabel{ii} '^o/s'],'fontweight','bold','rot', 90);                 
+                y=ylabel(['[B] ' axLabel{ii} '^o/s'],'fontweight','bold','rotation', 90);                 
                 set(y,'Units','normalized', 'position', [-.035 .67 1],'color',[.2 .2 .2]);  
                 y=xlabel('time (s)','fontweight','bold');
                 set(y,'color',[.2 .2 .2]); 
