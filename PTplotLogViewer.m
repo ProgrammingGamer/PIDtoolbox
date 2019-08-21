@@ -8,6 +8,7 @@
 % ----------------------------------------------------------------------------------
 
 % tic
+printf("---PTplotLogViewer---\n");
 if ~isempty(filenameA) || ~isempty(filenameB) 
     
     %set(PTfig, 'pointer', 'watch')
@@ -302,6 +303,7 @@ if ~isempty(filenameA) || ~isempty(filenameB)
                     a.Enable='off'; 
                     axis([0 xmax -maxY*2 maxY])
                 end
+                printf("ErrorCheck 03\n");
                
                 box off   
                 y=ylabel(['[B] ' axLabel{ii} '^o/s'],'fontweight','bold','rot', 90);                 

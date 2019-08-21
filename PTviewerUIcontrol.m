@@ -1,4 +1,5 @@
 %% PTviewerUIcontrol
+printf("---PTviewerUIcontrol---\n");
 
 posInfo.checkbox0=[.1 .965 .1 .025];
 posInfo.checkbox1=[.1 .94 .1 .025];
@@ -63,4 +64,5 @@ guiHandles.checkbox15=uicontrol(PTfig,'Style','checkbox','String','All','fontsiz
     'units','normalized','position',[posInfo.checkbox15],'callback','if (~isempty(filenameA) | ~isempty(filenameB)), plotall_flag=guiHandles.checkbox15.Value; PTplotLogViewer; end');
 
 guiHandles.linewidth = uicontrol(PTfig,'Style','popupmenu','string',{'line width 1','line width 2','line width 3','line width 4','line width 5'},...
-        'fontsize',fontsz,'units','normalized','position', [posInfo.linewidth],'callback','@selection; if (~isempty(filenameA) | ~isempty(filenameB)), PTplotLogViewer; end');
+    'fontsize',fontsz,'units','normalized','position', [posInfo.linewidth],'callback','@selection; if (~isempty(filenameA) | ~isempty(filenameB)), PTplotLogViewer; end');
+printf("---PTviewerUIcontrolEND---\n");
