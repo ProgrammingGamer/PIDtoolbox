@@ -9,7 +9,7 @@
 if ~isempty(filenameA) || ~isempty(filenameB)
 
 PTstatsfig=figure(6);
-set(PTstatsfig, 'units','normalized','outerposition',[.1 .1 .75 .8])
+set(PTstatsfig, 'units','normalized','position',[.1 .1 .75 .8])
 PTstatsfig.NumberTitle='off';
 PTstatsfig.Name= ['PIDtoolbox (' PtbVersion ') - Flight stats'];
 PTstatsfig.InvertHardcopy='off';
@@ -38,16 +38,16 @@ statsCrtlpanel = uipanel('Title','','FontSize',fontsz5,...
               'BackgroundColor',[.95 .95 .95],...
               'Position',[.06 .935 .24 .06]);
 
-guiHandlesStats.saveFig5 = uicontrol(PTstatsfig,'string','Save Fig','fontsize',fontsz5,'TooltipString',[TooltipString_saveFig],'units','normalized','outerposition',[posInfo.saveFig5],...
+guiHandlesStats.saveFig5 = uicontrol(PTstatsfig,'string','Save Fig','fontsize',fontsz5,'TooltipString',[TooltipString_saveFig],'units','normalized','position',[posInfo.saveFig5],...
     'callback','guiHandlesStats.saveFig5.FontWeight=''bold'';PTsaveFig; guiHandlesStats.saveFig5.FontWeight=''normal'';'); 
 guiHandlesStats.saveFig5.BackgroundColor=[ .8 .8 .8];
 
-guiHandlesStats.refresh = uicontrol(PTstatsfig,'string','Refresh','fontsize',fontsz5,'TooltipString',[TooltipString_refresh],'units','normalized','outerposition',[posInfo.refresh3],...
+guiHandlesStats.refresh = uicontrol(PTstatsfig,'string','Refresh','fontsize',fontsz5,'TooltipString',[TooltipString_refresh],'units','normalized','position',[posInfo.refresh3],...
     'callback','updateErr=1;PTplotStats;');
 guiHandlesStats.refresh.BackgroundColor=[1 1 .2];
 
 guiHandlesStats.degsecStick =uicontrol(PTstatsfig,'Style','checkbox','String','rate of change','fontsize',fontsz5,...
-    'units','normalized','BackgroundColor',bgcolor,'outerposition',[posInfo.degsecStick],'callback','if (~isempty(filenameA) | ~isempty(filenameB)), end; PTplotStats;');
+    'units','normalized','BackgroundColor',bgcolor,'position',[posInfo.degsecStick],'callback','if (~isempty(filenameA) | ~isempty(filenameB)), end; PTplotStats;');
 
         
 else

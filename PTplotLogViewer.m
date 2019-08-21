@@ -81,12 +81,12 @@ if ~isempty(filenameA) || ~isempty(filenameB)
 
     %%%%%%%% ui filenames %%%%%%%
     if ~isempty(filenameA)
-    guiHandles.fnameAText = uicontrol(PTfig,'style','text','string',['A:' filenameA],'fontsize',fontsz*.8,'units','normalized','BackgroundColor',bgcolor,'outerposition',[posInfo.fnameAText]);
     set(guiHandles.fileA, 'fontweight', 'bold');
+    guiHandles.fnameAText = uicontrol(PTfig,'style','text','string',['A:' filenameA],'fontsize',fontsz*.8,'units','normalized','BackgroundColor',bgcolor,'position',[posInfo.fnameAText]);
     end
     if ~isempty(filenameB)
-    guiHandles.fnameBText = uicontrol(PTfig,'style','text','string',['B:' filenameB],'fontsize',fontsz*.8,'units','normalized','BackgroundColor',bgcolor,'outerposition',[posInfo.fnameBText]);
     set(guiHandles.fileB, 'fontweight', 'bold');
+    guiHandles.fnameBText = uicontrol(PTfig,'style','text','string',['B:' filenameB],'fontsize',fontsz*.8,'units','normalized','BackgroundColor',bgcolor,'position',[posInfo.fnameBText]);
     end
 
 

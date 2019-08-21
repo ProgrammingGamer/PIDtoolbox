@@ -10,7 +10,7 @@
 if ~isempty(filenameA) || ~isempty(filenameB)
     
 PTtunefig=figure(4);
-set(PTtunefig, 'units','normalized','outerposition',[.1 .1 .75 .8])
+set(PTtunefig, 'units','normalized','position',[.1 .1 .75 .8])
 PTtunefig.NumberTitle='off';
 PTtunefig.Name= ['PIDtoolbox (' PtbVersion ') - Step Response Tool'];
 PTtunefig.InvertHardcopy='off';
@@ -55,23 +55,23 @@ tuneCrtlpanel = uipanel('Title','','FontSize',fontsz4,...
               'BackgroundColor',[.95 .95 .95],...
               'Position',[.085 .93 .36 .06]);
           
-guiHandlesTune.run4 = uicontrol(PTtunefig,'string','Run','fontsize',fontsz4,'TooltipString',[TooltipString_steprun],'units','normalized','outerposition',[posInfo.run4],...
+guiHandlesTune.run4 = uicontrol(PTtunefig,'string','Run','fontsize',fontsz4,'TooltipString',[TooltipString_steprun],'units','normalized','position',[posInfo.run4],...
     'callback','PTtuningParams;'); 
 guiHandlesTune.run4.BackgroundColor=[.3 .9 .3];
 
-guiHandlesTune.saveFig4 = uicontrol(PTtunefig,'string','Save Fig','fontsize',fontsz4,'TooltipString',[TooltipString_saveFig],'units','normalized','outerposition',[posInfo.saveFig4],...
+guiHandlesTune.saveFig4 = uicontrol(PTtunefig,'string','Save Fig','fontsize',fontsz4,'TooltipString',[TooltipString_saveFig],'units','normalized','position',[posInfo.saveFig4],...
     'callback','guiHandlesTune.saveFig4.FontWeight=''bold'';PTsaveFig; guiHandlesTune.saveFig4.FontWeight=''normal'';'); 
 guiHandlesTune.saveFig4.BackgroundColor=[ .8 .8 .8];
 
 guiHandlesTune.subsampFactor = uicontrol(PTtunefig,'Style','popupmenu','string',{'subsampling low (fastest | less reliable)'; 'subsampling med-low'; 'subsampling medium'; 'subsampling med-high';  'subsampling high (slowest | most reliable)';},...
-    'fontsize',fontsz4,'TooltipString', [TooltipString_subsample],'units','normalized','outerposition', [posInfo.subsampFactor],'callback','@selection2;');
+    'fontsize',fontsz4,'TooltipString', [TooltipString_subsample],'units','normalized','position', [posInfo.subsampFactor],'callback','@selection2;');
 guiHandlesTune.subsampFactor.Value=3;
 
 guiHandlesTune.checkboxrateHigh =uicontrol(PTtunefig,'Style','checkbox','String','>500deg/s','fontsize',fontsz4,'TooltipString', [TooltipString_FastStepResp],...
-    'units','normalized','BackgroundColor',bgcolor,'outerposition',[posInfo.checkboxrateHigh],'callback','if (~isempty(filenameA) | ~isempty(filenameB)), end; updateStep=1;PTtuningParams;');
+    'units','normalized','BackgroundColor',bgcolor,'position',[posInfo.checkboxrateHigh],'callback','if (~isempty(filenameA) | ~isempty(filenameB)), end; updateStep=1;PTtuningParams;');
 
 guiHandlesTune.minDegMove = uicontrol(PTtunefig,'Style','popupmenu','string',{'min rate 20deg/s'; 'min rate 40deg/s'; 'min rate 60deg/s'; 'min rate 80deg/s';  'min rate 100deg/s';},...
-    'fontsize',fontsz4,'TooltipString', [TooltipString_minRate],'units','normalized','outerposition', [posInfo.minDegMove],'callback','@selection2;');
+    'fontsize',fontsz4,'TooltipString', [TooltipString_minRate],'units','normalized','position', [posInfo.minDegMove],'callback','@selection2;');
 guiHandlesTune.minDegMove.Value=2;
  
 

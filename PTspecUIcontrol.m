@@ -92,7 +92,7 @@ posInfo.climMax_input4 = [.74 .845 .03 .03];
 climScale=[.5 .5 .5 .5];
 
 PTspecfig=figure(2);
-set(PTspecfig, 'units','normalized','outerposition',[.1 .1 .75 .8])
+set(PTspecfig, 'units','normalized','position',[.1 .1 .75 .8])
 PTspecfig.NumberTitle='off';
 PTspecfig.Name= ['PIDtoolbox (' PtbVersion ') - Spectral Analyzer'];
 PTspecfig.InvertHardcopy='off';
@@ -110,7 +110,7 @@ specCrtlpanel = uipanel('Title','','FontSize',fontsz2,...
  
 %%% PRESET CONFIGURATIONS
 guiHandlesSpec.specPresets = uicontrol(PTspecfig,'Style','popupmenu','string',{'PRESETS:'; '  1. [A+B] Gyro prefilt | Gyro'  ; '  2. [A+B] Gyro | Dterm' ; '  3. [A+B] Fterm | PIDsum' ; '  4. [A+B] Set point | PID error'; '  5. [A+B] Motors 1-2 | Motors 3-4' ;  '  6. [A] Gyro prefilt | Gyro | Pterm | Dterm' ; '  7. [A] Gyro prefilt | Gyro | Dterm prefilt | Dterm' ; '  8. [A] Pterm | Dterm | Fterm | PIDsum ' ;'  9. [A] Gyro | Dterm | Set point | PID error' ; '10. [A] Gyro | Dterm | Motors 1-2 | Motors 3-4' ; '11. [B] Gyro prefilt | Gyro | Pterm | Dterm' ; '12. [B] Gyro prefilt | Gyro | Dterm prefilt | Dterm'; '13. [B] Pterm | Dterm | Fterm | PIDsum ' ; '14. [B] Gyro | Dterm | Set point | PID error' ; '15. [B] Gyro | Dterm | Motors 1-2 | Motors 3-4'},...
-    'fontsize',fontsz2,'TooltipString', [TooltipString_presets], 'units','normalized','outerposition', [posInfo.specPresets],'callback',...
+    'fontsize',fontsz2,'TooltipString', [TooltipString_presets], 'units','normalized','position', [posInfo.specPresets],'callback',...
     ['if guiHandlesSpec.specPresets.Value == 1, guiHandlesSpec.SpecSelect{1}.Value=1; guiHandlesSpec.SpecSelect{2}.Value=1; guiHandlesSpec.SpecSelect{3}.Value=1; guiHandlesSpec.SpecSelect{4}.Value=1; guiHandlesSpec.Sub100HzCheck{1}.Value=0; guiHandlesSpec.Sub100HzCheck{2}.Value=0; guiHandlesSpec.Sub100HzCheck{3}.Value=0; guiHandlesSpec.Sub100HzCheck{4}.Value=0; end;',...    
     'if guiHandlesSpec.specPresets.Value == 2, guiHandlesSpec.SpecSelect{1}.Value=3; guiHandlesSpec.SpecSelect{2}.Value=2; guiHandlesSpec.SpecSelect{3}.Value=14; guiHandlesSpec.SpecSelect{4}.Value=13; guiHandlesSpec.Sub100HzCheck{1}.Value=0; guiHandlesSpec.Sub100HzCheck{2}.Value=0; guiHandlesSpec.Sub100HzCheck{3}.Value=0; guiHandlesSpec.Sub100HzCheck{4}.Value=0; end;',...
     'if guiHandlesSpec.specPresets.Value == 3, guiHandlesSpec.SpecSelect{1}.Value=2; guiHandlesSpec.SpecSelect{2}.Value=7; guiHandlesSpec.SpecSelect{3}.Value=13; guiHandlesSpec.SpecSelect{4}.Value=18; guiHandlesSpec.Sub100HzCheck{1}.Value=0; guiHandlesSpec.Sub100HzCheck{2}.Value=0; guiHandlesSpec.Sub100HzCheck{3}.Value=0; guiHandlesSpec.Sub100HzCheck{4}.Value=0; end;',...
@@ -128,31 +128,31 @@ guiHandlesSpec.specPresets = uicontrol(PTspecfig,'Style','popupmenu','string',{'
     'if guiHandlesSpec.specPresets.Value == 15, guiHandlesSpec.SpecSelect{1}.Value=13; guiHandlesSpec.SpecSelect{2}.Value=18; guiHandlesSpec.SpecSelect{3}.Value=16; guiHandlesSpec.SpecSelect{4}.Value=15; guiHandlesSpec.Sub100HzCheck{1}.Value=0; guiHandlesSpec.Sub100HzCheck{2}.Value=0; guiHandlesSpec.Sub100HzCheck{3}.Value=1; guiHandlesSpec.Sub100HzCheck{4}.Value=1; end;',...
     'if guiHandlesSpec.specPresets.Value == 16, guiHandlesSpec.SpecSelect{1}.Value=13; guiHandlesSpec.SpecSelect{2}.Value=18; guiHandlesSpec.SpecSelect{3}.Value=22; guiHandlesSpec.SpecSelect{4}.Value=23; guiHandlesSpec.Sub100HzCheck{1}.Value=0; guiHandlesSpec.Sub100HzCheck{2}.Value=0; guiHandlesSpec.Sub100HzCheck{3}.Value=0; guiHandlesSpec.Sub100HzCheck{4}.Value=0; end;']); 
 
-guiHandlesSpec.computeSpec = uicontrol(PTspecfig,'string','Run','fontsize',fontsz2,'TooltipString', [TooltipString_specRun],'units','normalized','outerposition',[posInfo.computeSpec],...
+guiHandlesSpec.computeSpec = uicontrol(PTspecfig,'string','Run','fontsize',fontsz2,'TooltipString', [TooltipString_specRun],'units','normalized','position',[posInfo.computeSpec],...
     'callback','PTplotSpec;');
 guiHandlesSpec.computeSpec.BackgroundColor=[.3 .9 .3];
 
 guiHandlesSpec.checkbox2d =uicontrol(PTspecfig,'Style','checkbox','String','2-D','fontsize',fontsz2,'TooltipString', [TooltipString_2d],...
-    'units','normalized','BackgroundColor',bgcolor,'outerposition',[posInfo.checkbox2d],'callback','if (~isempty(filenameA) | ~isempty(filenameB)), end;updateSpec=1;PTplotSpec;');
+    'units','normalized','BackgroundColor',bgcolor,'position',[posInfo.checkbox2d],'callback','if (~isempty(filenameA) | ~isempty(filenameB)), end;updateSpec=1;PTplotSpec;');
 
 guiHandlesSpec.percentMotor = uicontrol(PTspecfig,'Style','popupmenu','string',{'%throttle'; '%motor'},...
-    'fontsize',fontsz2,'TooltipString', [TooltipString_percentThr], 'units','normalized','outerposition', [posInfo.percentMotor],'callback','@selection2;');
+    'fontsize',fontsz2,'TooltipString', [TooltipString_percentThr], 'units','normalized','position', [posInfo.percentMotor],'callback','@selection2;');
 
 guiHandlesSpec.subsampleFactor = uicontrol(PTspecfig,'Style','popupmenu','string',{'subsampling low (fastest | less reliable)'; 'subsampling med-low'; 'subsampling medium'; 'subsampling med-high'; 'subsampling high (slowest | most reliable)'},...
-    'fontsize',fontsz2,'TooltipString', [TooltipString_subsample], 'units','normalized','outerposition', [posInfo.subsampleFactor],'callback','@selection2;');
+    'fontsize',fontsz2,'TooltipString', [TooltipString_subsample], 'units','normalized','position', [posInfo.subsampleFactor],'callback','@selection2;');
 guiHandlesSpec.subsampleFactor.Value=2;
 
-guiHandlesSpec.saveFig2 = uicontrol(PTspecfig,'string','Save Fig','fontsize',fontsz2,'TooltipString',[TooltipString_saveFig],'units','normalized','BackgroundColor',[.8 .8 .8],'outerposition',[posInfo.saveFig2],...
+guiHandlesSpec.saveFig2 = uicontrol(PTspecfig,'string','Save Fig','fontsize',fontsz2,'TooltipString',[TooltipString_saveFig],'units','normalized','BackgroundColor',[.8 .8 .8],'position',[posInfo.saveFig2],...
     'callback','guiHandlesSpec.saveFig2.FontWeight=''bold'';PTsaveFig;guiHandlesSpec.saveFig2.FontWeight=''normal'';'); 
 
 guiHandlesSpec.Sub100HzCheck{1} =uicontrol(PTspecfig,'Style','checkbox','String','<100Hz','fontsize',fontsz2,'TooltipString', [TooltipString_sub100],...
-    'units','normalized','BackgroundColor',bgcolor,'outerposition',[posInfo.Sub100HzCheck1],'callback','if (~isempty(filenameA) | ~isempty(filenameB)), end;updateSpec=1;PTplotSpec;');
+    'units','normalized','BackgroundColor',bgcolor,'position',[posInfo.Sub100HzCheck1],'callback','if (~isempty(filenameA) | ~isempty(filenameB)), end;updateSpec=1;PTplotSpec;');
 guiHandlesSpec.Sub100HzCheck{2} =uicontrol(PTspecfig,'Style','checkbox','String','<100Hz','fontsize',fontsz2,'TooltipString', [TooltipString_sub100],...
-    'units','normalized','BackgroundColor',bgcolor,'outerposition',[posInfo.Sub100HzCheck2],'callback','if (~isempty(filenameA) | ~isempty(filenameB)), end;updateSpec=1;PTplotSpec;');
+    'units','normalized','BackgroundColor',bgcolor,'position',[posInfo.Sub100HzCheck2],'callback','if (~isempty(filenameA) | ~isempty(filenameB)), end;updateSpec=1;PTplotSpec;');
 guiHandlesSpec.Sub100HzCheck{3} =uicontrol(PTspecfig,'Style','checkbox','String','<100Hz','fontsize',fontsz2,'TooltipString', [TooltipString_sub100],...
-    'units','normalized','BackgroundColor',bgcolor,'outerposition',[posInfo.Sub100HzCheck3],'callback','if (~isempty(filenameA) | ~isempty(filenameB)), end;updateSpec=1;PTplotSpec;');
+    'units','normalized','BackgroundColor',bgcolor,'position',[posInfo.Sub100HzCheck3],'callback','if (~isempty(filenameA) | ~isempty(filenameB)), end;updateSpec=1;PTplotSpec;');
 guiHandlesSpec.Sub100HzCheck{4} =uicontrol(PTspecfig,'Style','checkbox','String','<100Hz','fontsize',fontsz2,'TooltipString', [TooltipString_sub100],...
-    'units','normalized','BackgroundColor',bgcolor,'outerposition',[posInfo.Sub100HzCheck4],'callback','if (~isempty(filenameA) | ~isempty(filenameB)), end;updateSpec=1;PTplotSpec;');
+    'units','normalized','BackgroundColor',bgcolor,'position',[posInfo.Sub100HzCheck4],'callback','if (~isempty(filenameA) | ~isempty(filenameB)), end;updateSpec=1;PTplotSpec;');
 
 % create string list for SpecSelect
 sA={'NONE','Gyro [A]','Gyro prefilt [A]','PID error [A]','Set point [A]','Pterm [A]','Dterm [A]','Dterm prefilt [A]','Fterm [A]','PIDsum [A]','Motors 1 2 [A]','Motors 3 4 [A]'};
@@ -162,41 +162,41 @@ sB={'Gyro [B]','Gyro prefilt [B]','PID error [B]','Set point [B]','Pterm [B]','D
 sAB=[sA sB];
     
 guiHandlesSpec.SpecSelect{1} = uicontrol(PTspecfig,'Style','popupmenu','string',sAB,...
-    'fontsize',fontsz2,'TooltipString',[TooltipString_user],'units','normalized','outerposition', [posInfo.hDropdn1pos],'callback','@selection2;');
+    'fontsize',fontsz2,'TooltipString',[TooltipString_user],'units','normalized','position', [posInfo.hDropdn1pos],'callback','@selection2;');
 guiHandlesSpec.SpecSelect{2} = uicontrol(PTspecfig,'Style','popupmenu','string',sAB,...
-    'fontsize',fontsz2,'TooltipString',[TooltipString_user],'units','normalized','outerposition', [posInfo.hDropdn2pos],'callback','@selection2;');
+    'fontsize',fontsz2,'TooltipString',[TooltipString_user],'units','normalized','position', [posInfo.hDropdn2pos],'callback','@selection2;');
 guiHandlesSpec.SpecSelect{3} = uicontrol(PTspecfig,'Style','popupmenu','string',sAB,...
-    'fontsize',fontsz2,'TooltipString',[TooltipString_user],'units','normalized','outerposition', [posInfo.hDropdn3pos],'callback','@selection2;');
+    'fontsize',fontsz2,'TooltipString',[TooltipString_user],'units','normalized','position', [posInfo.hDropdn3pos],'callback','@selection2;');
 guiHandlesSpec.SpecSelect{4} = uicontrol(PTspecfig,'Style','popupmenu','string',sAB,...
-    'fontsize',fontsz2,'TooltipString',[TooltipString_user],'units','normalized','outerposition', [posInfo.hDropdn4pos],'callback','@selection2;');
+    'fontsize',fontsz2,'TooltipString',[TooltipString_user],'units','normalized','position', [posInfo.hDropdn4pos],'callback','@selection2;');
 
  guiHandlesSpec.SpecSelect{1}.Value=1;
  guiHandlesSpec.SpecSelect{2}.Value=1;
  guiHandlesSpec.SpecSelect{3}.Value=1;
  guiHandlesSpec.SpecSelect{4}.Value=1;
 
-guiHandlesSpec.smoothFactor_select = uicontrol(PTspecfig,'style','popupmenu','string',{'smoothing low' 'smoothing low-med' 'smoothing medium' 'smoothing med-high' 'smoothing high'},'fontsize',fontsz2,'TooltipString', [TooltipString_smooth], 'units','normalized','outerposition',[posInfo.smooth_select],...
+guiHandlesSpec.smoothFactor_select = uicontrol(PTspecfig,'style','popupmenu','string',{'smoothing low' 'smoothing low-med' 'smoothing medium' 'smoothing med-high' 'smoothing high'},'fontsize',fontsz2,'TooltipString', [TooltipString_smooth], 'units','normalized','position',[posInfo.smooth_select],...
      'callback','@selection2;updateSpec=1;PTplotSpec;');
 guiHandlesSpec.smoothFactor_select.Value=3;
 
-guiHandlesSpec.climMax_text = uicontrol(PTspecfig,'style','text','string','scale','fontsize',fontsz2,'TooltipString',[TooltipString_scale],'units','normalized','BackgroundColor',bgcolor,'outerposition',[posInfo.climMax_text]);
-guiHandlesSpec.climMax_input = uicontrol(PTspecfig,'style','edit','string',[num2str(climScale(1))],'fontsize',fontsz2,'TooltipString',[TooltipString_scale],'units','normalized','outerposition',[posInfo.climMax_input],...
+guiHandlesSpec.climMax_text = uicontrol(PTspecfig,'style','text','string','scale','fontsize',fontsz2,'TooltipString',[TooltipString_scale],'units','normalized','BackgroundColor',bgcolor,'position',[posInfo.climMax_text]);
+guiHandlesSpec.climMax_input = uicontrol(PTspecfig,'style','edit','string',[num2str(climScale(1))],'fontsize',fontsz2,'TooltipString',[TooltipString_scale],'units','normalized','position',[posInfo.climMax_input],...
      'callback','@textinput_call2; climScale(1)=str2num(guiHandlesSpec.climMax_input.String);updateSpec=1;PTplotSpec;');
 
- guiHandlesSpec.climMax_text2 = uicontrol(PTspecfig,'style','text','string','scale','fontsize',fontsz2,'TooltipString',[TooltipString_scale],'units','normalized','BackgroundColor',bgcolor,'outerposition',[posInfo.climMax_text2]);
-guiHandlesSpec.climMax_input2 = uicontrol(PTspecfig,'style','edit','string',[num2str(climScale(2))],'fontsize',fontsz2,'TooltipString',[TooltipString_scale],'units','normalized','outerposition',[posInfo.climMax_input2],...
+ guiHandlesSpec.climMax_text2 = uicontrol(PTspecfig,'style','text','string','scale','fontsize',fontsz2,'TooltipString',[TooltipString_scale],'units','normalized','BackgroundColor',bgcolor,'position',[posInfo.climMax_text2]);
+guiHandlesSpec.climMax_input2 = uicontrol(PTspecfig,'style','edit','string',[num2str(climScale(2))],'fontsize',fontsz2,'TooltipString',[TooltipString_scale],'units','normalized','position',[posInfo.climMax_input2],...
      'callback','@textinput_call2; climScale(2)=str2num(guiHandlesSpec.climMax_input2.String);updateSpec=1;PTplotSpec;');
  
- guiHandlesSpec.climMax_text3 = uicontrol(PTspecfig,'style','text','string','scale','fontsize',fontsz2,'TooltipString',[TooltipString_scale],'units','normalized','BackgroundColor',bgcolor,'outerposition',[posInfo.climMax_text3]);
-guiHandlesSpec.climMax_input3 = uicontrol(PTspecfig,'style','edit','string',[num2str(climScale(3))],'fontsize',fontsz2,'TooltipString',[TooltipString_scale],'units','normalized','outerposition',[posInfo.climMax_input3],...
+ guiHandlesSpec.climMax_text3 = uicontrol(PTspecfig,'style','text','string','scale','fontsize',fontsz2,'TooltipString',[TooltipString_scale],'units','normalized','BackgroundColor',bgcolor,'position',[posInfo.climMax_text3]);
+guiHandlesSpec.climMax_input3 = uicontrol(PTspecfig,'style','edit','string',[num2str(climScale(3))],'fontsize',fontsz2,'TooltipString',[TooltipString_scale],'units','normalized','position',[posInfo.climMax_input3],...
      'callback','@textinput_call2; climScale(3)=str2num(guiHandlesSpec.climMax_input3.String);updateSpec=1;PTplotSpec;');
  
- guiHandlesSpec.climMax_text4 = uicontrol(PTspecfig,'style','text','string','scale','fontsize',fontsz2,'TooltipString',[TooltipString_scale],'units','normalized','BackgroundColor',bgcolor,'outerposition',[posInfo.climMax_text4]);
-guiHandlesSpec.climMax_input4 = uicontrol(PTspecfig,'style','edit','string',[num2str(climScale(4))],'fontsize',fontsz2,'TooltipString',[TooltipString_scale],'units','normalized','outerposition',[posInfo.climMax_input4],...
+ guiHandlesSpec.climMax_text4 = uicontrol(PTspecfig,'style','text','string','scale','fontsize',fontsz2,'TooltipString',[TooltipString_scale],'units','normalized','BackgroundColor',bgcolor,'position',[posInfo.climMax_text4]);
+guiHandlesSpec.climMax_input4 = uicontrol(PTspecfig,'style','edit','string',[num2str(climScale(4))],'fontsize',fontsz2,'TooltipString',[TooltipString_scale],'units','normalized','position',[posInfo.climMax_input4],...
      'callback','@textinput_call2; climScale(4)=str2num(guiHandlesSpec.climMax_input4.String);updateSpec=1;PTplotSpec;');
  
  guiHandlesSpec.ColormapSelect = uicontrol(PTspecfig,'Style','popupmenu','string',{'parula','jet','hot','cool','gray','bone','copper','viridis','linear-RED','linear-GREY'},...
-    'fontsize',fontsz2,'TooltipString', [TooltipString_cmap], 'units','normalized','outerposition',[posInfo.ColormapSelect],'callback','@selection2;updateSpec=1; PTplotSpec;');
+    'fontsize',fontsz2,'TooltipString', [TooltipString_cmap], 'units','normalized','position',[posInfo.ColormapSelect],'callback','@selection2;updateSpec=1; PTplotSpec;');
 guiHandlesSpec.ColormapSelect.Value=3;% hot 3 viridis 12
 
 
@@ -216,12 +216,12 @@ if A_debugmode==GYRO_SCALED
 
         PhaseDelay2_A=finddelay(smooth(DATmainA.DtermRaw(1,:),50),smooth(DATmainA.DtermFilt(1,:),50),maxlag) * sampTime / 1000;
         if PhaseDelay2_A<.1, PhaseDelay2_A=[]; end % when garbage gets through
-        guiHandlesSpec.AphasedelayText = uicontrol(PTspecfig,'style','text','string',['[A] estimated phase delay (hardware/gyro/dterm/total): ' num2str(HardwareLPFdelay) ' / ' num2str(round(PhaseDelay_A*100)/100) ' / ' num2str(round(PhaseDelay2_A*100)/100) ' / ' num2str(round((HardwareLPFdelay+PhaseDelay_A+PhaseDelay2_A)*100)/100) ' ms'],'fontsize',fontsz2,'TooltipString', [TooltipString_phase],'units','normalized','BackgroundColor',bgcolor,'outerposition',[posInfo.AphasedelayText]);
+        guiHandlesSpec.AphasedelayText = uicontrol(PTspecfig,'style','text','string',['[A] estimated phase delay (hardware/gyro/dterm/total): ' num2str(HardwareLPFdelay) ' / ' num2str(round(PhaseDelay_A*100)/100) ' / ' num2str(round(PhaseDelay2_A*100)/100) ' / ' num2str(round((HardwareLPFdelay+PhaseDelay_A+PhaseDelay2_A)*100)/100) ' ms'],'fontsize',fontsz2,'TooltipString', [TooltipString_phase],'units','normalized','BackgroundColor',bgcolor,'position',[posInfo.AphasedelayText]);
     catch
-        guiHandlesSpec.AphasedelayText = uicontrol(PTspecfig,'style','text','string',['[A] unable to estimate phase delay '],'fontsize',fontsz2,'TooltipString', [TooltipString_phase],'units','normalized','BackgroundColor',bgcolor,'outerposition',[posInfo.AphasedelayText]);
+        guiHandlesSpec.AphasedelayText = uicontrol(PTspecfig,'style','text','string',['[A] unable to estimate phase delay '],'fontsize',fontsz2,'TooltipString', [TooltipString_phase],'units','normalized','BackgroundColor',bgcolor,'position',[posInfo.AphasedelayText]);
     end
 else
-        guiHandlesSpec.AphasedelayText = uicontrol(PTspecfig,'style','text','string',['[A] unable to estimate phase delay '],'fontsize',fontsz2,'TooltipString', [TooltipString_phase],'units','normalized','BackgroundColor',bgcolor,'outerposition',[posInfo.AphasedelayText]);
+        guiHandlesSpec.AphasedelayText = uicontrol(PTspecfig,'style','text','string',['[A] unable to estimate phase delay '],'fontsize',fontsz2,'TooltipString', [TooltipString_phase],'units','normalized','BackgroundColor',bgcolor,'position',[posInfo.AphasedelayText]);
 end
 
 clear sampTime maxlag PhaseDelay_B PhaseDelay2_B
@@ -235,12 +235,12 @@ if B_debugmode==GYRO_SCALED
         PhaseDelay2_B=finddelay(smooth(DATmainB.DtermRaw(1,:),50),smooth(DATmainB.DtermFilt(1,:),50),maxlag) * sampTime / 1000;
         if PhaseDelay2_B<.1, PhaseDelay2_B=[]; end % when garbage gets through
 
-        guiHandlesSpec.BphasedelayText = uicontrol(PTspecfig,'style','text','string',['[B] estimated phase delay (hardware/gyro/dterm/total): ' num2str(HardwareLPFdelay) ' / ' num2str(round(PhaseDelay_B*100)/100) ' / ' num2str(round(PhaseDelay2_B*100)/100) ' / ' num2str(round((HardwareLPFdelay+PhaseDelay_B+PhaseDelay2_B)*100)/100) ' ms'],'fontsize',fontsz2,'TooltipString', [TooltipString_phase],'units','normalized','BackgroundColor',bgcolor,'outerposition',[posInfo.BphasedelayText]);
+        guiHandlesSpec.BphasedelayText = uicontrol(PTspecfig,'style','text','string',['[B] estimated phase delay (hardware/gyro/dterm/total): ' num2str(HardwareLPFdelay) ' / ' num2str(round(PhaseDelay_B*100)/100) ' / ' num2str(round(PhaseDelay2_B*100)/100) ' / ' num2str(round((HardwareLPFdelay+PhaseDelay_B+PhaseDelay2_B)*100)/100) ' ms'],'fontsize',fontsz2,'TooltipString', [TooltipString_phase],'units','normalized','BackgroundColor',bgcolor,'position',[posInfo.BphasedelayText]);
     catch
-        guiHandlesSpec.BphasedelayText = uicontrol(PTspecfig,'style','text','string',['[B] unable to estimate phase delay '],'fontsize',fontsz2,'TooltipString', [TooltipString_phase],'units','normalized','BackgroundColor',bgcolor,'outerposition',[posInfo.BphasedelayText]);
+        guiHandlesSpec.BphasedelayText = uicontrol(PTspecfig,'style','text','string',['[B] unable to estimate phase delay '],'fontsize',fontsz2,'TooltipString', [TooltipString_phase],'units','normalized','BackgroundColor',bgcolor,'position',[posInfo.BphasedelayText]);
     end
 else
-       guiHandlesSpec.BphasedelayText = uicontrol(PTspecfig,'style','text','string',['[B] unable to estimate phase delay '],'fontsize',fontsz2,'TooltipString', [TooltipString_phase],'units','normalized','BackgroundColor',bgcolor,'outerposition',[posInfo.BphasedelayText]);
+       guiHandlesSpec.BphasedelayText = uicontrol(PTspecfig,'style','text','string',['[B] unable to estimate phase delay '],'fontsize',fontsz2,'TooltipString', [TooltipString_phase],'units','normalized','BackgroundColor',bgcolor,'position',[posInfo.BphasedelayText]);
 end
 
 else

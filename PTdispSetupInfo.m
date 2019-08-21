@@ -10,7 +10,7 @@ if ~isempty(filenameA) || ~isempty(filenameB)
 
     PTdisp=figure(5);
     screensz = get(0,'ScreenSize');
-    set(PTdisp, 'units','normalized','outerposition',[.1 .1 .75 .8])
+    set(PTdisp, 'units','normalized','position',[.1 .1 .75 .8])
     PTdisp.NumberTitle='off';
     PTdisp.Name= ['PIDtoolbox (' PtbVersion ') -  Setup Info'];
     set(PTdisp,'color',bgcolor)
@@ -41,30 +41,30 @@ if ~isempty(filenameA) || ~isempty(filenameB)
     if ~isempty(filenameA) & ~isempty(filenameB)  
         if length(setupA)==length(setupB)      
             t = uitable('ColumnName',{filenameA; filenameB},'ColumnWidth',{columnWidth columnWidth},'ColumnFormat',{'char' 'char'},'Data',[cellstr(char(setupA)) cellstr(char(setupB))]);
-            set(t,'units','normalized','OuterPosition',[.05 .05 .9 .9],'FontSize',fontsz5)
+            set(t,'units','normalized','position',[.05 .05 .9 .9],'FontSize',fontsz5)
         end
         if length(setupA)>length(setupB)  
             clear btmp
             btmp = strings(size(setupA)); 
             btmp(1:length(setupB),:)=setupB;
             t = uitable('ColumnName',{filenameA; filenameB},'ColumnWidth',{columnWidth columnWidth},'ColumnFormat',{'char' 'char'},'Data',[cellstr(char(setupA)) cellstr(char(btmp))]);
-            set(t,'units','normalized','OuterPosition',[.05 .05 .9 .9],'FontSize',fontsz5)
+            set(t,'units','normalized','position',[.05 .05 .9 .9],'FontSize',fontsz5)
         end
         if length(setupB)>length(setupA)  
             clear btmp
             btmp = strings(size(setupB)); 
             btmp(1:length(setupA),:)=setupA;
             t = uitable('ColumnName',{filenameA; filenameB},'ColumnWidth',{columnWidth columnWidth},'ColumnFormat',{'char' 'char'},'Data',[cellstr(char(btmp)) cellstr(string(setupB))]);
-            set(t,'units','normalized','OuterPosition',[.05 .05 .9 .9],'FontSize',fontsz5)
+            set(t,'units','normalized','position',[.05 .05 .9 .9],'FontSize',fontsz5)
         end
     end
     if ~isempty(filenameA) & isempty(filenameB)
           t = uitable('ColumnWidth',{columnWidth},'ColumnFormat',{'char'},'Data',[cellstr(char(setupA))]);
-          set(t,'units','normalized','OuterPosition',[.05 .05 .9 .9],'FontSize',fontsz5)
+          set(t,'units','normalized','position',[.05 .05 .9 .9],'FontSize',fontsz5)
     end
     if isempty(filenameA) & ~isempty(filenameB)
           t = uitable('ColumnWidth',{columnWidth},'ColumnFormat',{'char'},'Data',[cellstr(char(setupB))]);
-          set(t,'units','normalized','OuterPosition',[.05 .05 .9 .9],'FontSize',fontsz5)
+          set(t,'units','normalized','position',[.05 .05 .9 .9],'FontSize',fontsz5)
     end
 
 else

@@ -161,63 +161,66 @@ TooltipString_flightStats=['Plots flight statistics in new window' ];
 TooltipString_wiki=['Link to the PIDtoolbox wiki in Github'];
 TooltipString_refresh=['Refreshes fonts and button sizes after change in window size'];
 %%%
-guiHandles.fileA = uicontrol(PTfig,'string','Select File [A]','fontsize',fontsz,'TooltipString', [TooltipString_files], 'units','normalized','outerposition',[posInfo.fileA],...
-     'callback','cd(logfileDir);[filenameA, filepathA] = uigetfile({''*.BBL;*.BFL'' }); if filepathA==0, filepathA=[]; filenameA=[]; end, filenameAtmp=[];'); 
-guiHandles.fileA.BackgroundColor=colorA;
 
-guiHandles.fileB = uicontrol(PTfig,'string','Select File [B]','fontsize',fontsz,'TooltipString', [TooltipString_files],'units','normalized','outerposition',[posInfo.fileB],...
-     'callback','cd(logfileDir);[filenameB, filepathB] = uigetfile({''*.BBL;*.BFL'' }); if filepathB==0, filepathB=[]; filenameB=[]; end, filenameBtmp=[];'); 
-guiHandles.fileB.BackgroundColor=colorB; 
-guiHandles.runAll = uicontrol(PTfig,'string','Load+Run','fontsize',fontsz,'TooltipString', [TooltipString_loadRun],'units','normalized','outerposition',[posInfo.runAll],...
-    'callback','guiHandles.runAll.FontWeight=''bold'';PTload;PTprocess;PTviewerUIcontrol; PTplotLogViewer; guiHandles.runAll.FontWeight=''normal'';'); 
-guiHandles.runAll.BackgroundColor=[.3 .9 .3];
+% Create Button Function
+function retvalue = createButton(figure, title, colour, fontsize, ToolTipString, posInfo, callback)
+  figurebutton = uicontrol(figure,'string', title,'fontsize',fontsize,'TooltipString', [ToolTipString],'units','normalized','position',[posInfo],...
+    'callback',callback); 
+  set(figurebutton, 'backgroundcolor', colour);
+  retvalue = figurebutton;
+  return;
+end
 
-% guiHandles.feelingLucky = uicontrol(PTfig,'string','Feeling Lucky','fontsize',fontsz,'TooltipString', [TooltipString_feelingLucky],'units','normalized','outerposition',[posInfo.feelingLucky],...
+file_path = sprintf("%c%c", fileparts(mfilename('fullpath')), "/logfileDir");
+
+guiHandles.fileA = createButton(PTfig, 'Select File [A]', colorA, fontsz, [TooltipString_files], posInfo.fileA, 
+  'cd (file_path);[filenameA, filepathA] = uigetfile({''*.BBL;*.BFL'' }); if filepathA==0, filepathA=[]; filenameA=[]; end, filenameAtmp=[];');
+
+guiHandles.fileB = createButton(PTfig, 'Select File [B]', colorB, fontsz, [TooltipString_files], posInfo.fileB, 
+  'cd (file_path);[filenameB, filepathB] = uigetfile({''*.BBL;*.BFL'' }); if filepathB==0, filepathB=[]; filenameB=[]; end, filenameBtmp=[];');
+
+guiHandles.runAll = createButton(PTfig, 'Load+Run', [.3 .9 .3], fontsz, [TooltipString_loadRun], posInfo.runAll, 
+  'set(guiHandles.runAll, "fontweight", ''bold'');PTload;PTprocess;PTviewerUIcontrol; PTplotLogViewer; set(guiHandles.runAll, "fontweight", ''normal'');');
+
+% guiHandles.feelingLucky = uicontrol(PTfig,'string','Feeling Lucky','fontsize',fontsz,'TooltipString', [TooltipString_feelingLucky],'units','normalized','position',[posInfo.feelingLucky],...
 %     'callback',['guiHandles.feelingLucky.FontWeight=''bold'';PTspecUIcontrol;',...
 %     'guiHandlesSpec.SpecSelect{1}.Value=3; guiHandlesSpec.SpecSelect{2}.Value=2; guiHandlesSpec.SpecSelect{3}.Value=6; guiHandlesSpec.SpecSelect{4}.Value=7; PTplotSpec; PTtuneUIcontrol; PTtuningParams; ',...
 %     'guiHandles.feelingLucky.FontWeight=''normal'';']);
 % guiHandles.feelingLucky.BackgroundColor=[.7 .9 .7];
   
-guiHandles.Epoch1_A_text = uicontrol(PTfig,'style','text','string','[A] st(s)','fontsize',fontsz,'TooltipString', [TooltipString_Epochs],'units','normalized','BackgroundColor',bgcolor,'outerposition',[posInfo.Epoch1_A_text]);
-guiHandles.Epoch1_A_Input = uicontrol(PTfig,'style','edit','string',int2str(epoch1_A),'fontsize',fontsz,'TooltipString', [TooltipString_Epochs],'units','normalized','outerposition',[posInfo.Epoch1_A_Input],...
-     'callback','@textinput_call; epoch1_A=str2num(guiHandles.Epoch1_A_Input.String);PTprocess;PTplotLogViewer; ');
-guiHandles.Epoch2_A_text = uicontrol(PTfig,'style','text','string','[A] end(s)','fontsize',fontsz,'TooltipString', [TooltipString_Epochs],'units','normalized','BackgroundColor',bgcolor,'outerposition',[posInfo.Epoch2_A_text]);
-guiHandles.Epoch2_A_Input = uicontrol(PTfig,'style','edit','string',int2str(epoch2_A),'fontsize',fontsz,'TooltipString', [TooltipString_Epochs],'units','normalized','outerposition',[posInfo.Epoch2_A_Input],...
-     'callback','@textinput_call;epoch2_A=str2num(guiHandles.Epoch2_A_Input.String);PTprocess;PTplotLogViewer; ');
-guiHandles.Epoch1_B_text = uicontrol(PTfig,'style','text','string','[B] st(s)','fontsize',fontsz,'TooltipString', [TooltipString_Epochs],'units','normalized','BackgroundColor',bgcolor,'outerposition',[posInfo.Epoch1_B_text]);
-guiHandles.Epoch1_B_Input = uicontrol(PTfig,'style','edit','string',int2str(epoch1_B),'fontsize',fontsz,'TooltipString', [TooltipString_Epochs],'units','normalized','outerposition',[posInfo.Epoch1_B_Input],...
-     'callback','@textinput_call; epoch1_B=str2num(guiHandles.Epoch1_B_Input.String);PTprocess;PTplotLogViewer;  ');
-guiHandles.Epoch2_B_text = uicontrol(PTfig,'style','text','string','[B] end(s)','fontsize',fontsz,'TooltipString', [TooltipString_Epochs],'units','normalized','BackgroundColor',bgcolor,'outerposition',[posInfo.Epoch2_B_text]);
-guiHandles.Epoch2_B_Input = uicontrol(PTfig,'style','edit','string',int2str(epoch2_B),'fontsize',fontsz,'TooltipString', [TooltipString_Epochs],'units','normalized','outerposition',[posInfo.Epoch2_B_Input],...
-     'callback','@textinput_call; epoch2_B=str2num(guiHandles.Epoch2_B_Input.String);PTprocess;PTplotLogViewer; ');
+guiHandles.Epoch1_A_text = uicontrol(PTfig,'style','text','string','[A] st(s)','fontsize',fontsz,'TooltipString', [TooltipString_Epochs],'units','normalized','BackgroundColor',bgcolor,'position',[posInfo.Epoch1_A_text]);
+guiHandles.Epoch1_A_Input = uicontrol(PTfig,'style','edit','string',int2str(epoch1_A),'fontsize',fontsz,'TooltipString', [TooltipString_Epochs],'units','normalized','position',[posInfo.Epoch1_A_Input],...
+     'callback','@textinput_call; epoch1_A=str2num(guiHandles.Epoch1_A_Input);PTprocess;PTplotLogViewer; ');
+guiHandles.Epoch2_A_text = uicontrol(PTfig,'style','text','string','[A] end(s)','fontsize',fontsz,'TooltipString', [TooltipString_Epochs],'units','normalized','BackgroundColor',bgcolor,'position',[posInfo.Epoch2_A_text]);
+guiHandles.Epoch2_A_Input = uicontrol(PTfig,'style','edit','string',int2str(epoch2_A),'fontsize',fontsz,'TooltipString', [TooltipString_Epochs],'units','normalized','position',[posInfo.Epoch2_A_Input],...
+     'callback','@textinput_call;epoch2_A=str2num(guiHandles.Epoch2_A_Input);PTprocess;PTplotLogViewer; ');
+guiHandles.Epoch1_B_text = uicontrol(PTfig,'style','text','string','[B] st(s)','fontsize',fontsz,'TooltipString', [TooltipString_Epochs],'units','normalized','BackgroundColor',bgcolor,'position',[posInfo.Epoch1_B_text]);
+guiHandles.Epoch1_B_Input = uicontrol(PTfig,'style','edit','string',int2str(epoch1_B),'fontsize',fontsz,'TooltipString', [TooltipString_Epochs],'units','normalized','position',[posInfo.Epoch1_B_Input],...
+     'callback','@textinput_call; epoch1_B=str2num(guiHandles.Epoch1_B_Input);PTprocess;PTplotLogViewer;  ');
+guiHandles.Epoch2_B_text = uicontrol(PTfig,'style','text','string','[B] end(s)','fontsize',fontsz,'TooltipString', [TooltipString_Epochs],'units','normalized','BackgroundColor',bgcolor,'position',[posInfo.Epoch2_B_text]);
+guiHandles.Epoch2_B_Input = uicontrol(PTfig,'style','edit','string',int2str(epoch2_B),'fontsize',fontsz,'TooltipString', [TooltipString_Epochs],'units','normalized','position',[posInfo.Epoch2_B_Input],...
+     'callback','@textinput_call; epoch2_B=str2num(guiHandles.Epoch2_B_Input);PTprocess;PTplotLogViewer; ');
 
-guiHandles.spectrogramButton = uicontrol(PTfig,'string','Spectral Analyzer','fontsize',fontsz,'TooltipString', [TooltipString_spec],'units','normalized','outerposition',[posInfo.spectrogramButton],...
-    'callback','PTspecUIcontrol;');
-guiHandles.spectrogramButton.BackgroundColor=[ .8 .8 .8];
-guiHandles.PIDerrButton = uicontrol(PTfig,'string','PID Error Tool','fontsize',fontsz,'TooltipString', [TooltipString_err],'units','normalized','outerposition',[posInfo.PIDerrButton],...
-     'callback','PTerrUIcontrol;PTplotPIDerror'); 
-guiHandles.PIDerrButton.BackgroundColor=[ .8 .8 .8];
-guiHandles.TuningButton = uicontrol(PTfig,'string','Step Resp Tool','fontsize',fontsz,'TooltipString', [TooltipString_step],'units','normalized','outerposition',[posInfo.TuningButton],...
-    'callback','PTtuneUIcontrol');
-guiHandles.TuningButton.BackgroundColor=[ .8 .8 .8];
+guiHandles.PIDerrButton = createButton(PTfig, 'Spectral Analyzer', [ .8 .8 .8], fontsz, [TooltipString_spec], posInfo.spectrogramButton, 
+  'PTspecUIcontrol');
 
+guiHandles.PIDerrButton = createButton(PTfig, 'PID Error Tool', [ .8 .8 .8], fontsz, [TooltipString_err], posInfo.PIDerrButton, 
+  'PTerrUIcontrol;PTplotPIDerror');
 
-guiHandles.flightStats = uicontrol(PTfig,'string','Flight Stats','fontsize',fontsz, 'TooltipString',[TooltipString_flightStats], 'units','normalized','outerposition',[posInfo.flightStats],...
-    'callback','guiHandles.flightStats.FontWeight=''bold'';PTstatsUIcontrol; PTplotStats; guiHandles.flightStats.FontWeight=''normal'';'); 
-guiHandles.flightStats.BackgroundColor=[ .8 .8 .8];
+guiHandles.TuningButton = createButton(PTfig, 'Step Resp Tool', [ .8 .8 .8], fontsz, [TooltipString_step], posInfo.TuningButton, 
+  'PTtuneUIcontrol');
 
-guiHandles.DispInfoButton = uicontrol(PTfig,'string','Setup Info','fontsize',fontsz,'TooltipString', [TooltipString_setup],'units','normalized','outerposition',[posInfo.DispInfoButton],...
-    'callback','PTdispSetupInfo;');
-guiHandles.DispInfoButton.BackgroundColor=[ .8 .8 .8];
+guiHandles.flightStats = createButton(PTfig, 'Flight Stats', [ .8 .8 .8], fontsz, [TooltipString_flightStats], posInfo.flightStats, 
+  'guiHandles.flightStats.FontWeight=''bold'';PTstatsUIcontrol; PTplotStats; guiHandles.flightStats.FontWeight=''normal'';');
 
-guiHandles.saveFig = uicontrol(PTfig,'string','Save Fig','fontsize',fontsz, 'TooltipString',[TooltipString_saveFig], 'units','normalized','outerposition',[posInfo.saveFig],...
-    'callback','guiHandles.saveFig.FontWeight=''bold'';PTsaveFig; guiHandles.saveFig.FontWeight=''normal'';'); 
-guiHandles.saveFig.BackgroundColor=[ .8 .8 .8];
+guiHandles.DispInfoButton = createButton(PTfig, 'Setup Info', [ .8 .8 .8], fontsz, [TooltipString_setup], posInfo.DispInfoButton, 
+  'PTdispSetupInfo;');
 
+guiHandles.saveFig = createButton(PTfig, 'Save Fig', [ .8 .8 .8], fontsz, [TooltipString_saveFig], posInfo.saveFig, 
+  'guiHandles.saveFig.FontWeight=''bold'';PTsaveFig; guiHandles.saveFig.FontWeight=''normal'';');
 
-guiHandles.wiki = uicontrol(PTfig,'string','Wiki','fontsize',fontsz,'TooltipString', [TooltipString_wiki],'units','normalized','outerposition',[posInfo.wiki],...
-    'callback','try, system([''start chrome '' wikipage]), catch, web(wikipage), end'); 
-guiHandles.wiki.BackgroundColor=[1 1 .2];
+guiHandles.wiki = createButton(PTfig, 'Wiki', [1 1 .2], fontsz, [TooltipString_wiki], posInfo.wiki, 
+  'try, system([''start chrome '' wikipage]), catch, web(wikipage), end');
 
 
 %% functions
